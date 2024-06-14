@@ -1,0 +1,12 @@
+[Unit]
+Description = Catalogue Service
+
+[Service]
+User=root
+Environment=MONGO=true
+Environment=MONGO_URL="mongodb://localhost:27017/catalogue"
+ExecStart=/bin/node /catalogue/server.js
+SyslogIdentifier=catalogue
+
+[Install]
+WantedBy=multi-user.target

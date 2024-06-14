@@ -19,10 +19,14 @@ systemctl restart mongod
 
 dnf module disable nodejs -y
 dnf module enable nodejs:20 -y
-dnf install nodejs -y 
+dnf install nodejs -y
 rm -rf /catalogue
 cp -r catalogue /
 cd /catalogue
 npm install
+cp catalogue.service /etc/systemd/system/catalogue.service
+systemctl daemon-reload
+systemctl enable catalogue
+systemctl start catalogue
 
 
