@@ -25,6 +25,8 @@ systemctl enable redis
 systemctl restart redis
 
 cp catalogue.service /etc/systemd/system/catalogue.service
+cp user.service /etc/systemd/system/user.service
+
 dnf module disable nodejs -y
 dnf module enable nodejs:20 -y
 dnf install nodejs -y
@@ -37,7 +39,6 @@ systemctl enable catalogue
 systemctl start catalogue
 
 
-cp user.service /etc/systemd/system/user.service
 rm -rf /user
 cp -r user /
 cd /user
