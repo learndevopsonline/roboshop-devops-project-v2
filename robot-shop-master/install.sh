@@ -17,6 +17,7 @@ sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 systemctl enable mongod
 systemctl restart mongod
 
+cp catalogue.service /etc/systemd/system/catalogue.service
 dnf module disable nodejs -y
 dnf module enable nodejs:20 -y
 dnf install nodejs -y
@@ -24,7 +25,6 @@ rm -rf /catalogue
 cp -r catalogue /
 cd /catalogue
 npm install
-cp catalogue.service /etc/systemd/system/catalogue.service
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
