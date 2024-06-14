@@ -10,7 +10,7 @@ systemctl enable nginx
 systemctl restart nginx
 
 #
-cd $PWD
+cd $MPWD
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 dnf install -y mongodb-org
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
@@ -24,6 +24,7 @@ sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf
 systemctl enable redis
 systemctl restart redis
 
+cd $MPWD
 cp catalogue.service /etc/systemd/system/catalogue.service
 cp user.service /etc/systemd/system/user.service
 
@@ -38,7 +39,7 @@ systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
 
-cd $PWD
+cd $MPWD
 rm -rf /user
 cp -r user /
 cd /user
