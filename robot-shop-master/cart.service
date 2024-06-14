@@ -1,0 +1,13 @@
+[Unit]
+Description = Cart Service
+
+[Service]
+User=root
+Environment=CART_SERVER_PORT=8087
+Environment=CATALOGUE_HOST=localhost
+Environment=CATALOGUE_HOST=8089
+ExecStart=/bin/node /cart/server.js
+SyslogIdentifier=cart
+
+[Install]
+WantedBy=multi-user.target
