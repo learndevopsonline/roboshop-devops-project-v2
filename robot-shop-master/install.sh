@@ -27,6 +27,7 @@ systemctl restart redis
 cd $MPWD
 cp catalogue.service /etc/systemd/system/catalogue.service
 cp user.service /etc/systemd/system/user.service
+cp cart.service /etc/systemd/system/cart.service
 
 dnf module disable nodejs -y
 dnf module enable nodejs:20 -y
@@ -47,4 +48,14 @@ npm install
 systemctl daemon-reload
 systemctl enable user
 systemctl restart user
+
+cd $MPWD
+rm -rf /cart
+cp -r cart /
+cd /cart
+npm install
+systemctl daemon-reload
+systemctl enable cart
+systemctl restart cart
+
 
