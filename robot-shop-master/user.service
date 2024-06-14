@@ -7,7 +7,7 @@ Environment=MONGO=true
 Environment=USER_SERVER_PORT=8088
 Environment=REDIS_HOST=localhost
 Environment=MONGO_URL="mongodb://localhost:27017/users"
-ExecStart=/bin/node /catalogue/server.js
+ExecStart=/bin/node /user/server.js
 SyslogIdentifier=catalogue
 
 [Install]
