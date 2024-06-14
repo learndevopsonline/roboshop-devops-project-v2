@@ -38,12 +38,12 @@ systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
 
-
+cd $PWD
 rm -rf /user
 cp -r user /
 cd /user
 npm install
 systemctl daemon-reload
 systemctl enable user
-systemctl start user
+systemctl restart user
 
