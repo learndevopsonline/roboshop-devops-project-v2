@@ -5,7 +5,7 @@ Description = Cart Service
 User=root
 Environment=CART_SERVER_PORT=8087
 Environment=CATALOGUE_HOST=localhost
-Environment=CATALOGUE_HOST=8089
+Environment=CATALOGUE_PORT=8089
 Environment=REDIS_HOST=localhost
 ExecStart=/bin/node /cart/server.js
 SyslogIdentifier=cart
