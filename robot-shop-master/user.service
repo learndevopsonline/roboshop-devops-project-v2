@@ -8,7 +8,7 @@ Environment=USER_SERVER_PORT=8088
 Environment=REDIS_HOST=localhost
 Environment=MONGO_URL="mongodb://localhost:27017/users"
 ExecStart=/bin/node /user/server.js
-SyslogIdentifier=catalogue
+SyslogIdentifier=user
 
 [Install]
 WantedBy=multi-user.target
