@@ -7,7 +7,7 @@ rm -rf /usr/share/nginx/html/*
 cp -r web/static/*  /usr/share/nginx/html/
 cp web/nginx.conf /etc/nginx/nginx.conf
 systemctl enable nginx
-systemctl start nginx
+systemctl restart nginx
 
 #
 cd $PWD
@@ -16,6 +16,13 @@ dnf install -y mongodb-org
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 systemctl enable mongod
 systemctl restart mongod
+
+dnf module disable redis -y
+dnf module enable redis:7 -y
+dnf install redis -y
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf
+systemctl enable redis
+systemctl restart redis 
 
 cp catalogue.service /etc/systemd/system/catalogue.service
 dnf module disable nodejs -y
