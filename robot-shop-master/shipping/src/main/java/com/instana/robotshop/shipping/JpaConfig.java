@@ -1,12 +1,8 @@
 package com.instana.robotshop.shipping;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import javax.sql.DataSource;
-import org.springframework.boot.jdbc.DataSourceBuilder;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -18,7 +14,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-//@EnableJpaRepositories(basePackages = "com.instana.robotshop.shipping")
+@EnableJpaRepositories(basePackages = "com.instana.robotshop.shipping")
 @EnableTransactionManagement
 public class JpaConfig {
 
@@ -48,7 +44,7 @@ public class JpaConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] { "com.example.yourproject.entity" });
+        em.setPackagesToScan(new String[] { "com.instana.robotshop.shipping" });
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -56,4 +52,3 @@ public class JpaConfig {
         return em;
     }
 }
-
