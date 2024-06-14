@@ -22,7 +22,7 @@ dnf module enable redis:7 -y
 dnf install redis -y
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/redis/redis.conf
 systemctl enable redis
-systemctl restart redis 
+systemctl restart redis
 
 cp catalogue.service /etc/systemd/system/catalogue.service
 dnf module disable nodejs -y
@@ -36,4 +36,13 @@ systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
 
+
+cp user.service /etc/systemd/system/user.service
+rm -rf /user
+cp -r user /
+cd /user
+npm install
+systemctl daemon-reload
+systemctl enable user
+systemctl start user
 
