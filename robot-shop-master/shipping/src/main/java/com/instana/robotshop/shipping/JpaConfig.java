@@ -18,7 +18,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.instana.robotshop.shipping")
+//@EnableJpaRepositories(basePackages = "com.instana.robotshop.shipping")
 @EnableTransactionManagement
 public class JpaConfig {
 
