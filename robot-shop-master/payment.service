@@ -3,7 +3,7 @@ Description=Payment Service
 
 [Service]
 User=root
-WorkingDirectory=/app
+WorkingDirectory=/payment
 Environment=CART_HOST=localhost
 Environment=CART_PORT=8087
 Environment=USER_HOST=localhost
@@ -11,6 +11,7 @@ Environment=USER_PORT=8088
 Environment=AMQP_HOST=localhost
 Environment=AMQP_USER=roboshop
 Environment=AMQP_PASS=roboshop123
+Environment=SHOP_PAYMENT_PORT=8085
 
 ExecStart=/usr/local/bin/uwsgi --ini payment.ini
 ExecStop=/bin/kill -9 $MAINPID
