@@ -1,6 +1,7 @@
 import random
-
 import instana
+import logging
+from pythonjsonlogger import jsonlogger
 import os
 import sys
 import time
@@ -19,6 +20,14 @@ import prometheus_client
 from prometheus_client import Counter, Histogram
 
 app = Flask(__name__)
+app.logger.setLevel(logging.INFO)
+
+# Configure JSON logging
+log_handler = logging.StreamHandler(sys.stdout)
+formatter = jsonlogger.JsonFormatter()
+log_handler.setFormatter(formatter)
+
+app.logger.addHandler(log_handler)
 app.logger.setLevel(logging.INFO)
 
 CART = os.getenv('CART_HOST', 'cart')

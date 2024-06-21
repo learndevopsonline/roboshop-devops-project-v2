@@ -67,7 +67,7 @@ dnf install mysql-server -y
 systemctl enable mysqld
 systemctl start mysqld
 mysql_secure_installation --set-root-pass RoboShop@1
-EOF
+
 
 cd $MPWD
 rm -rf /shipping
@@ -84,4 +84,19 @@ mysql -uroot -pRoboShop@1 <db/master-data.sql
 systemctl daemon-reload
 systemctl enable shipping
 systemctl restart shipping
+
+EOF
+
+cd $MPWD
+
+cp rabbitmq.repo /etc.yum.repos.d/rabbitmq.repo
+dnf install rabbitmq-server -y
+exit
+
+rm -rf /payment
+cp -r payment /
+cp payment.service /etc/systemd/system/payment.service
+dnf install python36 gcc python3-devel -y
+cd /payment
+pip3.6 install -r requirements.txt
 
