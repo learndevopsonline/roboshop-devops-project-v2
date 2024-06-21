@@ -1,54 +1,29 @@
 package com.instana.robotshop.shipping;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.orm.jpa.JpaVendorAdapter;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import javax.sql.DataSource;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Bean;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "com.instana.robotshop.shipping")
-@EnableTransactionManagement
 public class JpaConfig {
-
-    @Value("${spring.datasource.url}")
-    private String dbUrl;
-
-    @Value("${spring.datasource.username}")
-    private String dbUsername;
-
-    @Value("${spring.datasource.password}")
-    private String dbPassword;
-
-    @Value("${spring.datasource.driver-class-name}")
-    private String dbDriverClassName;
+    private static final Logger logger = LoggerFactory.getLogger(JpaConfig.class);
 
     @Bean
-    public DataSource dataSource() {
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(dbUrl);
-        config.setUsername(dbUsername);
-        config.setPassword(dbPassword);
-        config.setDriverClassName(dbDriverClassName);
-        return new HikariDataSource(config);
-    }
+    public DataSource getDataSource() {
+        String JDBC_URL = String.format("jdbc:mysql://%s/cities?useSSL=false&autoReconnect=true", System.getenv("DB_HOST") == null ? "mysql" : System.getenv("DB_HOST"));
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] { "com.instana.robotshop.shipping" });
+        logger.info("jdbc url {}", JDBC_URL);
 
-        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        em.setJpaVendorAdapter(vendorAdapter);
+        DataSourceBuilder bob = DataSourceBuilder.create();
 
-        return em;
+        bob.driverClassName("com.mysql.jdbc.Driver");
+        bob.url(JDBC_URL);
+        bob.username("shipping");
+        bob.password("secret");
+
+        return bob.build();
     }
 }
