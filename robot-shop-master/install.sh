@@ -89,7 +89,7 @@ EOF
 
 cd $MPWD
 
-cp rabbitmq.repo /etc.yum.repos.d/rabbitmq.repo
+cp rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo
 dnf install rabbitmq-server -y
 exit
 
