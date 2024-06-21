@@ -85,14 +85,15 @@ systemctl daemon-reload
 systemctl enable shipping
 systemctl restart shipping
 
-EOF
 
-cd $MPWD
+
+
 
 cp rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo
 dnf install rabbitmq-server -y
-exit
+EOF
 
+cd $MPWD
 rm -rf /payment
 cp -r payment /
 cp payment.service /etc/systemd/system/payment.service
