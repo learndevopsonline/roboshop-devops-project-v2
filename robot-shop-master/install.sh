@@ -97,7 +97,7 @@ cd $MPWD
 rm -rf /payment
 cp -r payment /
 cp payment.service /etc/systemd/system/payment.service
-dnf install python36 gcc python3-devel -y
+dnf install python3 gcc python3-devel -y
 cd /payment
 pip3.6 install -r requirements.txt
 
