@@ -5,7 +5,7 @@ Description = Shipping Service
 User=root
 Environment=CART_ENDPOINT=localhost:8087
 Environment=DB_HOST=localhost
-ExecStart=/bin/java /shipping/shipping.jar
+ExecStart=/bin/java -jar /shipping/shipping.jar
 SyslogIdentifier=shipping
 
 [Install]
