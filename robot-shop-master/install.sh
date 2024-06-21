@@ -79,8 +79,8 @@ dnf install maven -y
 cd /shipping
 mvn clean package
 cp -r target/shipping*.jar shipping.jar
-#mysql -uroot -pRoboShop@1 <db/schema.sql
-#mysql -uroot -pRoboShop@1 <db/master-data.sql
+mysql -uroot -pRoboShop@1 <db/schema.sql
+mysql -uroot -pRoboShop@1 <db/master-data.sql
 systemctl daemon-reload
 systemctl enable shipping
 systemctl restart shipping
