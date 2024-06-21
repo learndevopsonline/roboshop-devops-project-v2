@@ -3,6 +3,7 @@ create database if not exists cities;
 -- Replace 'newuser' with the desired username
 -- Replace 'password' with the desired password
 -- Replace 'localhost' with the desired host, if necessary
+use cities;
 
 DELIMITER $$
 
@@ -32,7 +33,7 @@ CALL CreateUserIfNotExists();
 -- Drop the procedure
 DROP PROCEDURE IF EXISTS CreateUserIfNotExists;
 
-use cities;
+
 DROP TABLE IF EXISTS `cities`;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
