@@ -24,32 +24,32 @@ CREATE TABLE `cities` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6223666 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-DELIMITER $$
-
--- Create a stored procedure to handle the user creation if not exists
-CREATE PROCEDURE CreateUserIfNotExists()
-BEGIN
-    DECLARE userExists INT DEFAULT 0;
-
-    -- Check if the user exists
-    SELECT COUNT(*) INTO userExists
-    FROM mysql.user
-    WHERE user = 'shipping' AND host = 'localhost';
-
-    -- Create the user if it does not exist
-    IF userExists = 0 THEN
-        CREATE USER 'shipping'@'localhost' IDENTIFIED BY 'RoboShop@1';
-        GRANT ALL PRIVILEGES ON *.* TO 'shipping'@'localhost' WITH GRANT OPTION;
-        FLUSH PRIVILEGES;
-    END IF;
-END$$
-
-DELIMITER ;
-
--- Call the procedure
-CALL CreateUserIfNotExists();
-
--- Drop the procedure
-DROP PROCEDURE IF EXISTS CreateUserIfNotExists;
-
+--DELIMITER $$
+--
+---- Create a stored procedure to handle the user creation if not exists
+--CREATE PROCEDURE CreateUserIfNotExists()
+--BEGIN
+--    DECLARE userExists INT DEFAULT 0;
+--
+--    -- Check if the user exists
+--    SELECT COUNT(*) INTO userExists
+--    FROM mysql.user
+--    WHERE user = 'shipping' AND host = 'localhost';
+--
+--    -- Create the user if it does not exist
+--    IF userExists = 0 THEN
+--        CREATE USER 'shipping'@'localhost' IDENTIFIED BY 'RoboShop@1';
+--        GRANT ALL PRIVILEGES ON *.* TO 'shipping'@'localhost' WITH GRANT OPTION;
+--        FLUSH PRIVILEGES;
+--    END IF;
+--END$$
+--
+--DELIMITER ;
+--
+---- Call the procedure
+--CALL CreateUserIfNotExists();
+--
+---- Drop the procedure
+--DROP PROCEDURE IF EXISTS CreateUserIfNotExists;
+--
 
