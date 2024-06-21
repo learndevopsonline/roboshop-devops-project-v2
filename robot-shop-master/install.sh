@@ -36,7 +36,7 @@ rm -rf /catalogue
 cp -r catalogue /
 cd /catalogue
 npm install
-mongo < /catalogue/db/master-data.js
+mongosh < /catalogue/db/master-data.js
 systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
