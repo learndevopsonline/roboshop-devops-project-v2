@@ -9,9 +9,6 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-
 import javax.sql.DataSource;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -35,12 +32,12 @@ public class JpaConfig {
 
     @Bean
     public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(driverClassName);
-        dataSource.setUrl(url);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-        return dataSource;
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(dbUrl);
+        config.setUsername(dbUsername);
+        config.setPassword(dbPassword);
+        config.setDriverClassName(dbDriverClassName);
+        return new HikariDataSource(config);
     }
 
     @Bean
