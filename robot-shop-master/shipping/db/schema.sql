@@ -1,10 +1,11 @@
 create database if not exists cities;
-DROP TABLE IF EXISTS `cities`;
 
 GRANT ALL ON cities.* TO 'shipping'@'%' IDENTIFIED BY 'RoboShop@1';
 GRANT ALL ON cities.* TO 'shipping'@'localhost' IDENTIFIED BY 'RoboShop@1';
 
 use cities;
+DROP TABLE IF EXISTS `cities`;
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cities` (
