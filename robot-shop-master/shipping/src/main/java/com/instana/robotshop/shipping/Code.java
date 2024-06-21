@@ -7,21 +7,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /*
-* Bean for Code
-*/
+ * Bean for Code
+ */
 @Entity
 @Table(name = "codes")
 public class Code {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long uuid;
 
     private String code;
     private String name;
 
-    public long getid() {
-        return this.id;
+    public long getUuid() {
+        return this.uuid;
     }
 
     public String getCode() {

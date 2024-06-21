@@ -8,15 +8,15 @@ import javax.persistence.Id;
 import javax.persistence.Column;
 
 /*
-* Bean for City
-*/
+ * Bean for City
+ */
 @Entity
 @Table(name = "cities")
 public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private long uuid;
 
     @Column(name = "country_code")
     private String code;
@@ -26,8 +26,8 @@ public class City {
     private double latitude;
     private double longitude;
 
-    public long getid() {
-        return this.id;
+    public long getUuid() {
+        return this.uuid;
     }
 
     public String getCode() {
