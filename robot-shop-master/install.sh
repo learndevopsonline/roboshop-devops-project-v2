@@ -67,7 +67,7 @@ dnf install mysql-server -y
 systemctl enable mysqld
 systemctl start mysqld
 mysql_secure_installation --set-root-pass RoboShop@1
-EOF
+
 
 cd $MPWD
 rm -rf /shipping
@@ -92,7 +92,7 @@ systemctl restart shipping
 cp rabbitmq.repo /etc/yum.repos.d/rabbitmq.repo
 dnf install rabbitmq-server -y
 
-
+EOF
 cd $MPWD
 rm -rf /payment
 cp -r payment /
