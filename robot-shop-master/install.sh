@@ -101,3 +101,6 @@ dnf install python3 gcc python3-devel -y
 cd /payment
 pip3 install -r requirements.txt
 
+systemctl daemon-reload
+systemctl enable payment
+systemctl restart payment
