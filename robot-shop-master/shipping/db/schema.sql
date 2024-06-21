@@ -1,11 +1,36 @@
 create database if not exists cities;
 
-CREATE USER 'shipping'@'%' IDENTIFIED BY 'RoboShop@1';
-CREATE USER 'shipping'@'localhost' IDENTIFIED BY 'RoboShop@1';
+-- Replace 'newuser' with the desired username
+-- Replace 'password' with the desired password
+-- Replace 'localhost' with the desired host, if necessary
 
--- Grant all privileges on the 'cities' database to the user
-GRANT ALL PRIVILEGES ON cities.* TO 'shipping'@'%';
-GRANT ALL PRIVILEGES ON cities.* TO 'shipping'@'localhost';
+DELIMITER $$
+
+-- Create a stored procedure to handle the user creation if not exists
+CREATE PROCEDURE CreateUserIfNotExists()
+BEGIN
+    DECLARE userExists INT DEFAULT 0;
+
+    -- Check if the user exists
+    SELECT COUNT(*) INTO userExists
+    FROM mysql.user
+    WHERE user = 'shipping' AND host = 'localhost';
+
+    -- Create the user if it does not exist
+    IF userExists = 0 THEN
+        CREATE USER 'shipping'@'localhost' IDENTIFIED BY 'RoboShop@1';
+        GRANT ALL PRIVILEGES ON *.* TO 'shipping'@'localhost' WITH GRANT OPTION;
+        FLUSH PRIVILEGES;
+    END IF;
+END$$
+
+DELIMITER ;
+
+-- Call the procedure
+CALL CreateUserIfNotExists();
+
+-- Drop the procedure
+DROP PROCEDURE IF EXISTS CreateUserIfNotExists;
 
 use cities;
 DROP TABLE IF EXISTS `cities`;
