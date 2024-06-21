@@ -1,7 +1,7 @@
 MPWD=$(pwd)
 
 
-#: <<EOF
+: <<EOF
 dnf module disable nginx -y
 dnf module enable nginx:1.24 -y
 
@@ -61,18 +61,20 @@ npm install
 systemctl daemon-reload
 systemctl enable cart
 systemctl restart cart
-#EOF
+
 
 dnf install mysql-server -y
 systemctl enable mysqld
 systemctl start mysqld
 mysql_secure_installation --set-root-pass RoboShop@1
+EOF
 
 cd $MPWD
 rm -rf /shipping
 cp -r shipping /
 cp shipping.service /etc/systemd/system/shipping.service
 # dnf install java-21-openjdk-devel -y
+dnf install maven -y
 
 cd /shipping
 mvn clean package
