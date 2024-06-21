@@ -1,7 +1,7 @@
 MPWD=$(pwd)
 
 
-: <<EOF
+#: <<EOF
 dnf module disable nginx -y
 dnf module enable nginx:1.24 -y
 
@@ -61,7 +61,7 @@ npm install
 systemctl daemon-reload
 systemctl enable cart
 systemctl restart cart
-EOF
+#EOF
 
 dnf install mysql-server -y
 systemctl enable mysqld
