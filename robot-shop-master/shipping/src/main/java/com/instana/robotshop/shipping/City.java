@@ -16,7 +16,7 @@ public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long uuid;
+    private long id;
 
     @Column(name = "country_code")
     private String code;
@@ -26,8 +26,8 @@ public class City {
     private double latitude;
     private double longitude;
 
-    public long getUuid() {
-        return this.uuid;
+    public long getid() {
+        return this.id;
     }
 
     public String getCode() {

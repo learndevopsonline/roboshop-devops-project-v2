@@ -15,13 +15,13 @@ public class Code {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long uuid;
+    private long id;
 
     private String code;
     private String name;
 
-    public long getUuid() {
-        return this.uuid;
+    public long getid() {
+        return this.id;
     }
 
     public String getCode() {
