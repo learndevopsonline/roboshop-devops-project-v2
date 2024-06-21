@@ -1,7 +1,11 @@
 create database if not exists cities;
 
-GRANT ALL ON cities.* TO 'shipping'@'%' IDENTIFIED BY 'RoboShop@1';
-GRANT ALL ON cities.* TO 'shipping'@'localhost' IDENTIFIED BY 'RoboShop@1';
+CREATE USER 'shipping'@'%' IDENTIFIED BY 'RoboShop@1';
+CREATE USER 'shipping'@'localhost' IDENTIFIED BY 'RoboShop@1';
+
+-- Grant all privileges on the 'cities' database to the user
+GRANT ALL PRIVILEGES ON cities.* TO 'shipping'@'%';
+GRANT ALL PRIVILEGES ON cities.* TO 'shipping'@'localhost';
 
 use cities;
 DROP TABLE IF EXISTS `cities`;
